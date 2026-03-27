@@ -25,6 +25,18 @@ Outputs: hypotheses.json, thinking_report.txt
 - Must use claude-sonnet-4-6 or opus (Haiku does not support extended thinking)
 - `max_tokens` must be > thinking_budget (set to 8000)
 
+## Verification Checklist
+- [x] Extended thinking enabled with `budget_tokens=5000`
+- [x] Thinking blocks extracted from response content
+- [x] 3 hypotheses generated with confidence levels (1 HIGH, 2 MEDIUM)
+- [x] Hypotheses reference specific compounds and pIC50 values
+- [x] HypothesisSet Pydantic model validates successfully
+
+## Risks (resolved)
+- Extended thinking requires Sonnet/Opus (Haiku unsupported) — used claude-sonnet-4-6
+- Higher cost per call (~$0.04 vs ~$0.002 for Haiku) — acceptable for hypothesis generation
+- Thinking budget may be exhausted before complete reasoning — 5000 tokens was sufficient
+
 ## Results
 | Metric | Value |
 |--------|-------|
